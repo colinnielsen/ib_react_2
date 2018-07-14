@@ -1,4 +1,5 @@
 import React from 'react'
+import $ from 'jquery'
 
 class Test extends React.Component {
 
@@ -11,87 +12,153 @@ class Test extends React.Component {
         const script4 = document.createElement("script")
         const script5 = document.createElement("script")
         const script6 = document.createElement("script")
+        const script7 = document.createElement("script")
+        const script8 = document.createElement("script")
         const style1 = document.createElement("style")
         const style2 = document.createElement("style")
 
         //~~~~~~~~~~~~~~~~~~~~ content setters
         script3.innerHTML =
-            `function shareVK() {
-                var yourUrl = $('.share[data-dropdown-id="more"]').data('url'),
-                    title = $('.share[data-dropdown-id="more"]').data('text'),
-                    description = "Your Description",
-                    url = 'https://vkontakte.ru/share.php?url=' + yourUrl + '&title=' + title + '&description=' + description + '&noparse=true';
-                window.open(url, '', 'toolbar=0,status=0,width=626,height=436');
-            }
-        function shareWeibo() {
-            var yourUrl = $('.share[data-dropdown-id="more"]').data('url'),
-                title = $('.share[data-dropdown-id="more"]').data('text'),
-                url = 'http://service.weibo.com/share/share.php?url=' + yourUrl + '&appkey=&title=' + title + '&pic=&ralateUid=&language=zh_cn';
-            window.open(url, '', 'toolbar=0,status=0,width=626,height=436');
-        }
-        function externalLink(url) {
-            window.location = url;
-        }`
+            `
+                function shareVK() {
+                    var yourUrl = $('.share[data-dropdown-id="more"]').data('url'),
+                        title = $('.share[data-dropdown-id="more"]').data('text'),
+                        description = "Your Description",
+                        url = 'https://vkontakte.ru/share.php?url=' + yourUrl + '&title=' + title + '&description=' + description + '&noparse=true';
+                    window.open(url, '', 'toolbar=0,status=0,width=626,height=436');
+                }
+                function shareWeibo() {
+                    var yourUrl = $('.share[data-dropdown-id="more"]').data('url'),
+                        title = $('.share[data-dropdown-id="more"]').data('text'),
+                        url = 'http://service.weibo.com/share/share.php?url=' + yourUrl + '&appkey=&title=' + title + '&pic=&ralateUid=&language=zh_cn';
+                    window.open(url, '', 'toolbar=0,status=0,width=626,height=436');
+                }
+                function externalLink(url) {
+                    window.location = url;
+                }
+            `
+
         script4.innerHTML =
-            `(function (d) {
-                var config = {
-                kitId: 'okm1bwz',
-                scriptTimeout: 3000,
-                async: true
-            },
-                h = d.documentElement, t = setTimeout(function () { h.classNameName = h.classNameName.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.classNameName += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
-                    })(document);`
+            `
+                (function (d) {
+                    var config = {
+                    kitId: 'okm1bwz',
+                    scriptTimeout: 3000,
+                    async: true
+                },
+                    h = d.documentElement, t = setTimeout(function () { h.classNameName = h.classNameName.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.classNameName += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+                        })(document);
+            `
 
-        script5.innerHTML = `<script>
-    $(function () {
-      setInterval(function () {
-        if ($('.slideshow').hasclassName('selected')) {
-          $('.slideshow.selected .background.shown').removeclassName('shown').nextOrFirst('.background').addclassName('shown');
-        }
-      }, 4000); // <-- set your interval here
-    });
-  </script>`
-        script6.innerHTML = `<script>
-                        $(window).on('slideChange', function (event, number, element) {
+        script5.innerHTML =
+            `
+                    $(function () {
+                    setInterval(function () {
+                        if ($('.slideshow').hasclassName('selected')) {
+                        $('.slideshow.selected .background.shown').removeclassName('shown').nextOrFirst('.background').addclassName('shown');
+                        }
+                    }, 4000); // <-- set your interval here
+                    });
+                `
 
-      var $audio = $('audio');
-                  
-      $audio.animate({volume: 0 }, 500, function () {
-                            $audio[0].pause();
+        script6.innerHTML =
+            `
+                $(window).on('slideChange', function (event, number, element) {
+                    var $audio = $('audio');                
+                    $audio.animate({volume: 0 }, 500, function () {
+                                $audio[0].pause();
+                            });
                         });
-                  
-                      });
-  </script>`
-        style1.innerHTML = `
-        .owl-carousel .item {}
+            `
 
-        .owl-carousel .item a {}
+        script7.innerHTML =
+            `
+                $(function () {
+                            $('[data-on-click]').on('click', function () {
+                                var link = $(this).data('on-click');
+                                window.open(link, "newwindow");
+                            });
+                        });
+            `
 
-        .cover {
-          object-fit: cover;
-          width: 100%;
-          height: 150px;
-        }
+        script8.innerHTML =
+            `
+                $(document).ready(function () {
+                    $('.owl-carousel').owlCarousel({
+                        stagePadding: 10,
+                        loop: true,
+                        margin: 1,
+                        responsiveclassName: true,
+                        responsive: {
+                            0: {
+                                items: 2,
+                                nav: false,
+                                margin: 10
+                            },
+                            600: {
+                                items: 4,
+                                nav: false,
+                                margin: 10
+                            },
+                            1000: {
+                                items: 6,
+                                nav: false,
+                                loop: false,
+                                margin: 10
+                            },
+                            1500: {
+                                items: 8,
+                                nav: false,
+                                loop: false,
+                                margin: 10
+                            },
+                            2000: {
+                                items: 10,
+                                nav: false,
+                                loop: false,
+                                margin: 10
+                            }
+                        }
+                    })
+                })
+            `
 
-        .owl-carousel .item img {
-          display: block;
-        }
+        style1.innerHTML =
+            `
+                .owl-carousel .item {}
 
-        .owl-carousel .owl-dots {
-          display: none;
-        }`
-        style2.innerHTML = `
-    .slideshow .background {
-      opacity: 0;
-      visibility: hidden;
-      -webkit-transition: 1s;
-      transition: 1s;
-    }
+                .owl-carousel .item a {}
 
-    .slideshow .background.shown {
-      opacity: 1;
-      visibility: visible;
-    }`
+                .cover {
+                    object-fit: cover;
+                    width: 100%;
+                    height: 150px;
+                }
+
+                .owl-carousel .item img {
+                    display: block;
+                }
+
+                .owl-carousel .owl-dots {
+                    display: none;
+                }
+            `
+
+        style2.innerHTML =
+            `
+                .slideshow .background {
+                    opacity: 0;
+                    visibility: hidden;
+                    -webkit-transition: 1s;
+                    transition: 1s;
+                }
+
+                .slideshow .background.shown {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            `
+
         //~~~~~~~~~~~~~~~~~~~ source setters
         script0.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js";
         script1.src = "./js/plugins.js";
@@ -105,17 +172,21 @@ class Test extends React.Component {
         script4.async = true;
         script5.async = true;
         script6.async = true;
-        //~~~~~~~~~~~~~~~~~~~ appenders
+        script7.async = true;
+        script8.async = true;
 
+        //~~~~~~~~~~~~~~~~~~~ appenders
         document.head.appendChild(script0);
         document.head.appendChild(script1);
         document.head.appendChild(script2);
         document.head.appendChild(script3);
-        document.head.appendChild(script4);
-        document.head.appendChild(script5);
+        document.body.appendChild(script4);
+        document.body.appendChild(script5);
         document.head.appendChild(script6);
-        document.head.appendChild(style1);
-        document.head.appendChild(style2);
+        document.querySelector('#asdfgthesidebar').appendChild(style1);
+        document.body.appendChild(style2);
+        $(script7).insertAfter('#asdfgthesidebar')
+        document.querySelector('#contentScript').appendChild(script8)
     }
 
     render() {
@@ -124,7 +195,7 @@ class Test extends React.Component {
 
 
                 // SVG Library -->
-                <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+                <svg xmlns="//www.w3.org/2000/svg" style="display:none">
 
                     <symbol id="logo" viewBox="0 0 37.73 49.2">
                         <defs>
@@ -220,7 +291,7 @@ class Test extends React.Component {
                     </symbol>
 
                     <symbol id="drop-down" viewBox="0 0 16 16">
-                        <polyline stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="1,5 8,12 15,5" fill="none"></polyline>
+                        <polyline strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="1,5 8,12 15,5" fill="none"></polyline>
                     </symbol>
 
                     <symbol id="play" viewBox="0 0 30 30">
@@ -367,190 +438,126 @@ class Test extends React.Component {
                         <div className="cell">
                             <span className="prevSlide">
                                 <svg className="sideArrow">
-                                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-left"></use>
-          </svg>
-        </span>
+                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#arrow-left"></use>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
-    </div>
-  </nav>
+                </nav >
 
-            <nav className="side right">
-                <div className="navigation">
-                    <div className="cell">
-                        <span className="nextSlide">
-                            <svg className="sideArrow">
-                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
-          </svg>
-        </span>
-                </div>
-    </div>
-  </nav >
+                <nav className="side right">
+                    <div className="navigation">
+                        <div className="cell">
+                            <span className="nextSlide">
+                                <svg className="sideArrow">
+                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#arrow-right"></use>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </nav >
 
-            // Panel Top #06 -->
-            <nav className="panel top">
-                <div className="sections">
-                    <div className="left">
-                        <a href="universe.html#20" title="IB" className="button actionTrigger">
-                            <svg style="width: 50px;height:50px;">
-                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#logo"></use>
-          </svg>
-        </a>
-                </div>
-                <div className="right">
-                    <span className="button actionButton sidebarTrigger" data-sidebar-id="9" style="padding-top:10px !important; padding-right:50px !important;">
-                        <svg style="width: 30px;height:30px;">
-                            <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#slides"></use>
-          </svg>
-        </span>
-      </div>
-    </div >
-  </nav >
+                // Panel Top #06 -->
+                <nav className="panel top">
+                    <div className="sections">
+                        <div className="left">
+                            <a href="universe.html#20" title="IB" className="button actionTrigger">
+                                <svg style="width: 50px;height:50px;">
+                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#logo"></use>
+                                </svg>
+                            </a>
+                        </div>
+                        <div className="right">
+                            <span className="button actionButton sidebarTrigger" data-sidebar-id="9" style="padding-top:10px !important; padding-right:50px !important;">
+                                <svg style="width: 30px;height:30px;">
+                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#slides"></use>
+                                </svg>
+                            </span>
+                        </div>
+                    </div >
+                </nav >
 
 
-            // Sidebar -->
-            <nav className="sidebar bottom yellow" data-sidebar-id="9">
-                <div className="content">
-                    <script src="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/owl.carousel.min.js"></script>
-                    <link href="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/assets/owl.carousel.min.css" rel="stylesheet" type="text/css" />
-                    <link href="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/assets/owl.theme.default.min.css" rel="stylesheet"
-                        type="text/css" />
+                // Sidebar -->
+                <nav className="sidebar bottom yellow" data-sidebar-id="9" id="asdfgthesidebar">
+                    <div id="contentScript" className="content">
+                        <script src="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/owl.carousel.min.js"></script>
+                        <link href="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/assets/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+                        <link href="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/assets/owl.theme.default.min.css" rel="stylesheet"
+                            type="text/css" />
 
-                    <script>
-                        $(document).ready(function () {
-                            $('.owl-carousel').owlCarousel({
-                                stagePadding: 10,
-                                loop: true,
-                                margin: 1,
-                                responsiveclassName: true,
-                                responsive: {
-                                    0: {
-                                        items: 2,
-                                        nav: false,
-                                        margin: 10
-                                    },
-                                    600: {
-                                        items: 4,
-                                        nav: false,
-                                        margin: 10
-                                    },
-                                    1000: {
-                                        items: 6,
-                                        nav: false,
-                                        loop: false,
-                                        margin: 10
-                                    },
-                                    1500: {
-                                        items: 8,
-                                        nav: false,
-                                        loop: false,
-                                        margin: 10
-                                    },
-                                    2000: {
-                                        items: 10,
-                                        nav: false,
-                                        loop: false,
-                                        margin: 10
-                                    }
-                                }
-                            })
-                        })
-      </script>
 
-                    <div className="fix-12-12">
 
-                        // your carousel -->
-                        <div className="owl-carousel owl-theme ae-3" style="display:block; height: 150px;">
-                            <div className="item">
-                                <a href="#1">
-                                    <img src="assets/img/IMG1179.jpeg" alt="1" className="cover" />
-                                </a>
+                        <div className="fix-12-12">
+
+                            // your carousel -->
+                            <div className="owl-carousel owl-theme ae-3" style="display:block; height: 150px;">
+                                <div className="item">
+                                    <a href="#1">
+                                        <img src="assets/img/IMG1179.jpeg" alt="1" className="cover" />
+                                    </a>
+                                </div>
+                                <div className="item">
+                                    <a href="#2">
+                                        <img src="assets/img/lpzip.jpg" alt="2" className="cover" />
+                                    </a>
+                                </div>
+                                <div className="item">
+                                    <a href="#3">
+                                        <img src="assets/img/LG026.jpeg" alt="3" className="cover" />
+                                    </a>
+                                </div>
+                                <div className="item">
+                                    <a href="#4">
+                                        <img src="assets/img/IMG0509.jpg" alt="4" className="cover" />
+                                    </a>
+                                </div>
+                                <div className="item">
+                                    <a href="#5">
+                                        <img src="assets/img/IB9ArnaudLoubry.jpeg" alt="5" className="cover" />
+                                    </a>
+                                </div>
+                                <div className="item">6</div>
+                                <div className="item">7</div>
+                                <div className="item">8</div>
+                                <div className="item">9</div>
+                                <div className="item">10</div>
+                                <div className="item">11</div>
+                                <div className="item">12</div>
+                                <div className="item">13</div>
+                                <div className="item">14</div>
+                                <div className="item">15</div>
+                                <div className="item">16</div>
+                                <div className="item">17</div>
+                                <div className="item">18</div>
+                                <div className="item">19</div>
+                                <div className="item">20</div>
                             </div>
-                            <div className="item">
-                                <a href="#2">
-                                    <img src="assets/img/lpzip.jpg" alt="2" className="cover" />
-                                </a>
-                            </div>
-                            <div className="item">
-                                <a href="#3">
-                                    <img src="assets/img/LG026.jpeg" alt="3" className="cover" />
-                                </a>
-                            </div>
-                            <div className="item">
-                                <a href="#4">
-                                    <img src="assets/img/IMG0509.jpg" alt="4" className="cover" />
-                                </a>
-                            </div>
-                            <div className="item">
-                                <a href="#5">
-                                    <img src="assets/img/IB9ArnaudLoubry.jpeg" alt="5" className="cover" />
-                                </a>
-                            </div>
-                            <div className="item">6</div>
-                            <div className="item">7</div>
-                            <div className="item">8</div>
-                            <div className="item">9</div>
-                            <div className="item">10</div>
-                            <div className="item">11</div>
-                            <div className="item">12</div>
-                            <div className="item">13</div>
-                            <div className="item">14</div>
-                            <div className="item">15</div>
-                            <div className="item">16</div>
-                            <div className="item">17</div>
-                            <div className="item">18</div>
-                            <div className="item">19</div>
-                            <div className="item">20</div>
+
                         </div>
 
+
                     </div>
-
-
-                </div>
-            </nav>
-
-            // for desktop swipe
-            <script> window.disableOnScroll = 1; </script>-->
+                </nav>
+                {/* <script> window.disableOnScroll = 1; </script>-- > */}
 
                 // for mobile swipe
-                <script> window.disableOnSwipe = 1; </script>-->
+                {/* <script> window.disableOnSwipe = 1; </script>--> */}
+                {/* // Slide 1 --> */}
+                <section className="slide fade kenBurns" data-name="1">
 
-
-                    // Example background-slideshow -->
-                    // 1) copy styles -->
-
-
-                    // 2) copy scripts -->
-
-
-
-
-                    // 1) new tab scripts -->
-                    <script>
-                        $(function () {
-                            $('[data-on-click]').on('click', function () {
-                                var link = $(this).data('on-click');
-                                window.open(link, "newwindow");
-                            });
-                        });
-  </script>
-
-
-
-                    // Slide 1 -->
-                    <section className="slide fade kenBurns" data-name="1">
-
-                        // s1-navigation top -->
-                        <nav className="panel top">
-                            <div className="sections">
-                                <div className="center upArrow">
-                                    <a href="universe.html#1" className="button actionButton">
-                                        <svg>
-                                            <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-up"></use>
-            </svg>
-          </a>
+                    // s1-navigation top -->
+                    <nav className="panel top">
+                        <div className="sections">
+                            <div className="center upArrow">
+                                <a href="universe.html#1" className="button actionButton">
+                                    <svg>
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#arrow-up"></use>
+                                    </svg>
+                                </a>
                             </div>
-      </div>
-    </nav>
+                        </div>
+                    </nav>
 
                     // s1-information -->
                     <div className="content" style="-webkit-overflow-scrolling: touch; overflow-y: scroll;">
@@ -564,802 +571,802 @@ class Test extends React.Component {
 
                         // s1-navigation bottom -->
                         <nav className="panel bottom" style="z-index:1000;">
-                            <div className="sections">
-                                <div className="left">
-                                    <button className="button hideForDesktop" data-on-click="http://isabelleballu.com/test/archive/edit/francpairon.html" style="padding-left:25px !important;">
-                                        <svg style="width: 40px; height:40px;">
-                                            <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
-            </svg>
-          </button>
+                        <div className="sections">
+                            <div className="left">
+                                <button className="button hideForDesktop" data-on-click="http://isabelleballu.com/test/archive/edit/francpairon.html" style="padding-left:25px !important;">
+                                    <svg style="width: 40px; height:40px;">
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#info"></use>
+                                    </svg>
+                                </button>
                             </div>
                             <div className="center downArrow">
                                 <a href="brand.html#1" className="button actionButton">
                                     <svg>
-                                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-down"></use>
-            </svg>
-          </a>
-        </div>
-                        <div className="right">
-                            <span data-dropdown-id="s1" className="button actionButton dropdownTrigger" style="padding-top:10px !important; padding-right:50px !important;">
-                                <i className="material-icons">share</i>
-                            </span>
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#arrow-down"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div className="right">
+                                <span data-dropdown-id="s1" className="button actionButton dropdownTrigger" style="padding-top:10px !important; padding-right:50px !important;">
+                                    <i className="material-icons">share</i>
+                                </span>
+                            </div>
+                        </div >
+                    </nav >
+
+                </section >
+
+
+
+                // Slide 1-social media -->
+                <div className="dropdown bottom center share" data-dropdown-id="s1" data-text="#" data-url="#" data-pinterest-image="#">
+                    <ul>
+                        <li className="twitter">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#twitter"></use>
+                            </svg>
+                        </li>
+                        <li className="instagram">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#instagram"></use>
+                            </svg>
+                        </li>
+                        <li className="facebook">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#facebook"></use>
+                            </svg>
+                        </li >
+                        <li className="linkedin">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#linkedin"></use>
+                            </svg>
+                        </li >
+                        <li className="mail" data-subject="Subject" data-body="Body">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#mail"></use>
+                            </svg>
+                        </li >
+                    </ul >
+                </div >
+
+
+
+
+
+
+                // Slide 2 -->
+                <section className="slide fade kenBurns" data-name="2">
+
+                    // s2-navigation top -->
+                    <nav className="panel top">
+                        <div className="sections">
+                            <div className="center upArrow">
+                                <a href="universe.html#2" className="button actionButton">
+                                    <svg>
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#arrow-up"></use>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-      </div >
-    </nav >
+                    </nav>
 
-  </section >
-
-
-
-            // Slide 1-social media -->
-            <div className="dropdown bottom center share" data-dropdown-id="s1" data-text="#" data-url="#" data-pinterest-image="#">
-                <ul>
-                    <li className="twitter">
-                        <svg>
-                            <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
-        </svg>
-      </li>
-                <li className="instagram">
-                    <svg>
-                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
-        </svg>
-      </li>
-            <li className="facebook">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
-        </svg>
-      </li >
-            <li className="linkedin">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
-        </svg>
-      </li >
-            <li className="mail" data-subject="Subject" data-body="Body">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
-        </svg>
-      </li >
-    </ul >
-  </div >
-
-
-
-
-
-
-            // Slide 2 -->
-            <section className="slide fade kenBurns" data-name="2">
-
-                // s2-navigation top -->
-                <nav className="panel top">
-                    <div className="sections">
-                        <div className="center upArrow">
-                            <a href="universe.html#2" className="button actionButton">
-                                <svg>
-                                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-up"></use>
-            </svg>
-          </a>
-                    </div>
-      </div>
-    </nav>
-
-            // s2-information -->
-            <div className="content">
-                <div className="container">
-                    <div className="wrap bottom">
-                        <div className="fix-7-12 toLeft">
-                            <div className="pad shadow hideForTablet">
-                                <ul className="grid">
-                                    <li className="col-12-12 left cell-33">
-                                        <h1>PASSAGE N&deg;X</h1>
-                                        <h2>Survival of the Fittest (SS 2005)</h2>
-                                        <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
+                    // s2-information -->
+                    <div className="content">
+                        <div className="container">
+                            <div className="wrap bottom">
+                                <div className="fix-7-12 toLeft">
+                                    <div className="pad shadow hideForTablet">
+                                        <ul className="grid">
+                                            <li className="col-12-12 left cell-33">
+                                                <h1>PASSAGE N&deg;X</h1>
+                                                <h2>Survival of the Fittest (SS 2005)</h2>
+                                                <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
                     and I will give you a complete account of the system."</h4>
-                                        <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                                          blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
-                                          ocean.
+                                                <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+                                                  blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
+                                                  ocean.
                   </h5>
-                                        <ul className="museum" style="padding-top:20px;">
-                                            <li>
+                                                <ul className="museum" style="padding-top:20px;">
+                                                    <li>
+                                                        <a href="#">
+                                                            <svg style="width: 26.67px; height:20px;">
+                                                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#headphones"></use>
+                                                            </svg>
+                                                            <p className="uppercase">Audio</p>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <svg style="width:20px;height:20px;">
+                                                                <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile"></use>
+                                                            </svg>
+                                                            <p className="uppercase">Defile</p>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <svg style="width: 20px; height:20px;">
+                                                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#identity"></use>
+                                                            </svg>
+                                                            <p className="uppercase">Image</p>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                                 <a href="#">
-                                                    <svg style="width: 26.67px; height:20px;">
-                                                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                        </svg>
+                                                    <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                                                </a>
+                                            </li>
+                                            <li className="col-6-12 left fromCenter">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div >
+                        </div >
+                    </div >
+
+                    // s2-background -->
+                    <div className="background" style="background-image:url(assets/img/lpzip.jpg)"></div>
+
+                    // s2-navigation bottom -->
+                    <nav className="panel bottom" style="z-index:1000;">
+                        <div className="sections">
+                            <div className="left">
+                                <button className="button popupTrigger hideForDesktop" data-popup-id="p2" style="padding-left:25px !important;">
+                                    <svg style="width: 40px; height:40px;">
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#info"></use>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div className="center downArrow">
+                                <a href="brand.html#2" className="button actionButton">
+                                    <svg>
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#arrow-down"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div className="right">
+                                <span data-dropdown-id="s2" className="button actionButton dropdownTrigger" style="padding-top:10px !important; padding-right:50px !important;">
+                                    <i className="material-icons">share</i>
+                                </span>
+                            </div>
+                        </div >
+                    </nav >
+
+                </section >
+
+
+                // Slide 2-pop up for mobile and tablet -->
+                <div className="popup hideForDesktop" data-popup-id="p2">
+                    <div className="content">
+                        <div className="container">
+                            <div className="wrap spaces">
+                                <div className="fix-11-12 left popupContent">
+                                    <h1 className="uppercase">Franc' Pairon</h1>
+                                    <h2>Interview 17/11/2017</h2>
+                                    <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I
+              will give you a complete account of the system."</h4>
+                                    <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind
+              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</h5>
+                                    <ul className="museum" style="padding-top:5%;">
+                                        <li>
+                                            <a href="#">
+                                                <svg style="width: 26.67px; height:20px;">
+                                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#headphones"></use>
+                                                </svg>
                                                 <p className="uppercase">Audio</p>
-                      </a>
-                    </li>
+                                            </a>
+                                        </li>
                                         <li>
                                             <a href="#">
                                                 <svg style="width:20px;height:20px;">
-                                                    <use xmls: xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                        </svg>
-                                            <p className="uppercase">Defile</p>
-                      </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <svg style="width: 20px; height:20px;">
-                                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                        </svg>
-                                        <p className="uppercase">Image</p>
-                      </a>
-                    </li>
-                  </ul>
-                            <a href="#">
-                                <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-                            </a>
-                </li>
-                        <li className="col-6-12 left fromCenter">
-                        </li>
-              </ul>
-                </div>
-            </div>
-
-        </div >
-      </div >
-    </div >
-
-            // s2-background -->
-            <div className="background" style="background-image:url(assets/img/lpzip.jpg)"></div>
-
-            // s2-navigation bottom -->
-            <nav className="panel bottom" style="z-index:1000;">
-                <div className="sections">
-                    <div className="left">
-                        <button className="button popupTrigger hideForDesktop" data-popup-id="p2" style="padding-left:25px !important;">
-                            <svg style="width: 40px; height:40px;">
-                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
-            </svg>
-          </button>
-                </div>
-                <div className="center downArrow">
-                    <a href="brand.html#2" className="button actionButton">
-                        <svg>
-                            <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-down"></use>
-            </svg>
-          </a>
-        </div>
-            <div className="right">
-                <span data-dropdown-id="s2" className="button actionButton dropdownTrigger" style="padding-top:10px !important; padding-right:50px !important;">
-                    <i className="material-icons">share</i>
-                </span>
-            </div>
-      </div >
-    </nav >
-
-  </section >
-
-
-            // Slide 2-pop up for mobile and tablet -->
-            <div className="popup hideForDesktop" data-popup-id="p2">
-                <div className="content">
-                    <div className="container">
-                        <div className="wrap spaces">
-                            <div className="fix-11-12 left popupContent">
-                                <h1 className="uppercase">Franc' Pairon</h1>
-                                <h2>Interview 17/11/2017</h2>
-                                <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I
-              will give you a complete account of the system."</h4>
-                                <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind
-              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</h5>
-                                <ul className="museum" style="padding-top:5%;">
-                                    <li>
-                                        <a href="#">
-                                            <svg style="width: 26.67px; height:20px;">
-                                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                  </svg>
-                                        <p className="uppercase">Audio</p>
-                </a>
-              </li>
-                                <li>
+                                                    <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile"></use>
+                                                </svg>
+                                                <p className="uppercase">Defile</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg style="width: 20px; height:20px;">
+                                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#identity"></use>
+                                                </svg>
+                                                <p className="uppercase">Image</p>
+                                            </a>
+                                        </li>
+                                    </ul>
                                     <a href="#">
-                                        <svg style="width:20px;height:20px;">
-                                            <use xmls: xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                  </svg>
-                                    <p className="uppercase">Defile</p>
-                </a>
-              </li>
-                            <li>
-                                <a href="#">
-                                    <svg style="width: 20px; height:20px;">
-                                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                  </svg>
-                                <p className="uppercase">Image</p>
-                </a>
-              </li>
-            </ul>
-                    <a href="#">
-                        <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-                    </a>
-                </div>
-            </div>
-      </div >
-    </div >
-  </div >
+                                        <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div >
+                    </div >
+                </div >
 
-            // Slide 2-social media -->
-            <div className="dropdown bottom center share" data-dropdown-id="s2" data-text="#" data-url="#" data-pinterest-image="#">
-                <ul>
-                    <li className="twitter">
-                        <svg>
-                            <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
-        </svg>
-      </li>
-                <li className="instagram">
-                    <svg>
-                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
-        </svg>
-      </li>
-            <li className="facebook">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
-        </svg>
-      </li >
-            <li className="linkedin">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
-        </svg>
-      </li >
-            <li className="mail" data-subject="Subject" data-body="Body">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
-        </svg>
-      </li >
-    </ul >
-  </div >
+                // Slide 2-social media -->
+                <div className="dropdown bottom center share" data-dropdown-id="s2" data-text="#" data-url="#" data-pinterest-image="#">
+                    <ul>
+                        <li className="twitter">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#twitter"></use>
+                            </svg>
+                        </li>
+                        <li className="instagram">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#instagram"></use>
+                            </svg>
+                        </li>
+                        <li className="facebook">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#facebook"></use>
+                            </svg>
+                        </li >
+                        <li className="linkedin">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#linkedin"></use>
+                            </svg>
+                        </li >
+                        <li className="mail" data-subject="Subject" data-body="Body">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#mail"></use>
+                            </svg>
+                        </li >
+                    </ul >
+                </div >
 
 
 
-            // Slide 3 -->
-            <section className="slide fade kenBurns" data-name="3">
+                // Slide 3 -->
+                <section className="slide fade kenBurns" data-name="3">
 
-                // s3-navigation top -->
-                <nav className="panel top">
-                    <div className="sections">
-                        <div className="center upArrow">
-                            <a href="universe.html#3" className="button actionButton">
-                                <svg>
-                                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-up"></use>
-            </svg>
-          </a>
-                    </div>
-      </div>
-    </nav>
+                    // s3-navigation top -->
+                    <nav className="panel top">
+                        <div className="sections">
+                            <div className="center upArrow">
+                                <a href="universe.html#3" className="button actionButton">
+                                    <svg>
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#arrow-up"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
 
-            // s3-information -->
-            <div className="content">
-                <div className="container">
-                    <div className="wrap bottom">
-                        <div className="fix-7-12 toLeft">
-                            <div className="pad shadow hideForTablet">
-                                <ul className="grid">
-                                    <li className="col-12-12 left cell-33">
-                                        <h1>PASSAGE N&deg;X</h1>
-                                        <h2>Survival of the Fittest (SS 2005)</h2>
-                                        <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
+                    // s3-information -->
+                    <div className="content">
+                        <div className="container">
+                            <div className="wrap bottom">
+                                <div className="fix-7-12 toLeft">
+                                    <div className="pad shadow hideForTablet">
+                                        <ul className="grid">
+                                            <li className="col-12-12 left cell-33">
+                                                <h1>PASSAGE N&deg;X</h1>
+                                                <h2>Survival of the Fittest (SS 2005)</h2>
+                                                <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
                     and I will give you a complete account of the system."</h4>
-                                        <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                                          blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
-                                          ocean.
+                                                <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+                                                  blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
+                                                  ocean.
                   </h5>
-                                        <ul className="museum" style="padding-top:20px;">
-                                            <li>
+                                                <ul className="museum" style="padding-top:20px;">
+                                                    <li>
+                                                        <a href="#">
+                                                            <svg style="width: 26.67px; height:20px;">
+                                                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#headphones"></use>
+                                                            </svg>
+                                                            <p className="uppercase">Audio</p>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <svg style="width:20px;height:20px;">
+                                                                <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile"></use>
+                                                            </svg>
+                                                            <p className="uppercase">Defile</p>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <svg style="width: 20px; height:20px;">
+                                                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#identity"></use>
+                                                            </svg>
+                                                            <p className="uppercase">Image</p>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                                 <a href="#">
-                                                    <svg style="width: 26.67px; height:20px;">
-                                                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                        </svg>
+                                                    <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                                                </a>
+                                            </li>
+                                            <li className="col-6-12 left ae-4 fromCenter">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div >
+                        </div >
+                    </div >
+                    // s3-background -->
+                    <div className="background" style="background-image:url(assets/img/LG026.jpeg); background-position: bottom right;"></div>
+
+                    // s3-navigation bottom -->
+                    <nav className="panel bottom" style="z-index:1000;">
+                        <div className="sections">
+                            <div className="left">
+                                <button className="button popupTrigger hideForDesktop" data-popup-id="p3" style="padding-left:25px !important;">
+                                    <svg style="width: 40px; height:40px;">
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#info"></use>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div className="center downArrow">
+                                <a href="brand.html#3" className="button actionButton">
+                                    <svg>
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#arrow-down"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div className="right">
+                                <span data-dropdown-id="s3" className="button actionButton dropdownTrigger" style="padding-top:10px !important; padding-right:50px !important;">
+                                    <i className="material-icons">share</i>
+                                </span>
+                            </div>
+                        </div >
+                    </nav >
+
+                </section >
+
+
+                // Slide 3-pop up for mobile and tablet -->
+                <div className="popup hideForDesktop" data-popup-id="p3">
+                    <div className="content">
+                        <div className="container">
+                            <div className="wrap spaces">
+                                <div className="fix-11-12 left popupContent">
+                                    <h1 className="uppercase">Franc' Pairon</h1>
+                                    <h2>Interview 17/11/2017</h2>
+                                    <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I
+              will give you a complete account of the system."</h4>
+                                    <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind
+              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</h5>
+                                    <ul className="museum" style="padding-top:5%;">
+                                        <li>
+                                            <a href="#">
+                                                <svg style="width: 26.67px; height:20px;">
+                                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#headphones"></use>
+                                                </svg>
                                                 <p className="uppercase">Audio</p>
-                      </a>
-                    </li>
+                                            </a>
+                                        </li>
                                         <li>
                                             <a href="#">
                                                 <svg style="width:20px;height:20px;">
-                                                    <use xmls: xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                        </svg>
-                                            <p className="uppercase">Defile</p>
-                      </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <svg style="width: 20px; height:20px;">
-                                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                        </svg>
-                                        <p className="uppercase">Image</p>
-                      </a>
-                    </li>
-                  </ul>
-                            <a href="#">
-                                <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-                            </a>
-                </li>
-                        <li className="col-6-12 left ae-4 fromCenter">
-                        </li>
-              </ul>
-                </div>
-            </div>
-
-        </div >
-      </div >
-    </div >
-            // s3-background -->
-            <div className="background" style="background-image:url(assets/img/LG026.jpeg); background-position: bottom right;"></div>
-
-            // s3-navigation bottom -->
-            <nav className="panel bottom" style="z-index:1000;">
-                <div className="sections">
-                    <div className="left">
-                        <button className="button popupTrigger hideForDesktop" data-popup-id="p3" style="padding-left:25px !important;">
-                            <svg style="width: 40px; height:40px;">
-                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
-            </svg>
-          </button>
-                </div>
-                <div className="center downArrow">
-                    <a href="brand.html#3" className="button actionButton">
-                        <svg>
-                            <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-down"></use>
-            </svg>
-          </a>
-        </div>
-            <div className="right">
-                <span data-dropdown-id="s3" className="button actionButton dropdownTrigger" style="padding-top:10px !important; padding-right:50px !important;">
-                    <i className="material-icons">share</i>
-                </span>
-            </div>
-      </div >
-    </nav >
-
-  </section >
-
-
-            // Slide 3-pop up for mobile and tablet -->
-            <div className="popup hideForDesktop" data-popup-id="p3">
-                <div className="content">
-                    <div className="container">
-                        <div className="wrap spaces">
-                            <div className="fix-11-12 left popupContent">
-                                <h1 className="uppercase">Franc' Pairon</h1>
-                                <h2>Interview 17/11/2017</h2>
-                                <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I
-              will give you a complete account of the system."</h4>
-                                <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind
-              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</h5>
-                                <ul className="museum" style="padding-top:5%;">
-                                    <li>
-                                        <a href="#">
-                                            <svg style="width: 26.67px; height:20px;">
-                                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                  </svg>
-                                        <p className="uppercase">Audio</p>
-                </a>
-              </li>
-                                <li>
+                                                    <use xmlslink="http://www.w3.org/1999/xlink" xlinkHref="#defile"></use>
+                                                </svg>
+                                                <p className="uppercase">Defile</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg style="width: 20px; height:20px;">
+                                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#identity"></use>
+                                                </svg>
+                                                <p className="uppercase">Image</p>
+                                            </a>
+                                        </li>
+                                    </ul>
                                     <a href="#">
-                                        <svg style="width:20px;height:20px;">
-                                            <use xmls: xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                  </svg>
-                                    <p className="uppercase">Defile</p>
-                </a>
-              </li>
-                            <li>
-                                <a href="#">
-                                    <svg style="width: 20px; height:20px;">
-                                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                  </svg>
-                                <p className="uppercase">Image</p>
-                </a>
-              </li>
-            </ul>
-                    <a href="#">
-                        <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-                    </a>
-                </div>
-            </div>
-      </div >
-    </div >
-  </div >
+                                        <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div >
+                    </div >
+                </div >
 
-            // Slide 3-social media -->
-            <div className="dropdown bottom center share" data-dropdown-id="s3" data-text="#" data-url="#" data-pinterest-image="#">
-                <ul>
-                    <li className="twitter">
-                        <svg>
-                            <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
-        </svg>
-      </li>
-                <li className="instagram">
-                    <svg>
-                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
-        </svg>
-      </li>
-            <li className="facebook">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
-        </svg>
-      </li >
-            <li className="linkedin">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
-        </svg>
-      </li >
-            <li className="mail" data-subject="Subject" data-body="Body">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
-        </svg>
-      </li >
-    </ul >
-  </div >
+                // Slide 3-social media -->
+                <div className="dropdown bottom center share" data-dropdown-id="s3" data-text="#" data-url="#" data-pinterest-image="#">
+                    <ul>
+                        <li className="twitter">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#twitter"></use>
+                            </svg>
+                        </li>
+                        <li className="instagram">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#instagram"></use>
+                            </svg>
+                        </li>
+                        <li className="facebook">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#facebook"></use>
+                            </svg>
+                        </li >
+                        <li className="linkedin">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#linkedin"></use>
+                            </svg>
+                        </li >
+                        <li className="mail" data-subject="Subject" data-body="Body">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#mail"></use>
+                            </svg>
+                        </li >
+                    </ul >
+                </div >
 
 
 
-            // Slide 4 -->
-            <section className="slide whiteSlide fade kenBurns" data-name="4">
+                // Slide 4 -->
+                <section className="slide whiteSlide fade kenBurns" data-name="4">
 
-                // s4-navigation top -->
-                <nav className="panel top">
-                    <div className="sections">
-                        <div className="center upArrow">
-                            <a href="universe.html#4" className="button actionButton">
-                                <svg>
-                                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-up"></use>
-            </svg>
-          </a>
-                    </div>
-      </div>
-    </nav>
+                    // s4-navigation top -->
+                    <nav className="panel top">
+                        <div className="sections">
+                            <div className="center upArrow">
+                                <a href="universe.html#4" className="button actionButton">
+                                    <svg>
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#arrow-up"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
 
-            // s4-information -->
-            <div className="content">
-                <div className="container">
-                    <div className="wrap bottom">
-                        <div className="fix-7-12 left toRight">
-                            <div className="whitepad shadow hideForTablet">
-                                <h1 className="uppercase">Franc' Pairon</h1>
-                                <h2>Interview 17/11/2017</h2>
-                                <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and
+                    // s4-information -->
+                    <div className="content">
+                        <div className="container">
+                            <div className="wrap bottom">
+                                <div className="fix-7-12 left toRight">
+                                    <div className="whitepad shadow hideForTablet">
+                                        <h1 className="uppercase">Franc' Pairon</h1>
+                                        <h2>Interview 17/11/2017</h2>
+                                        <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and
                 I will give you a complete account of the system."</h4>
-                                <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind
+                                        <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind
                 texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</h5>
-                                <ul className="museum" style="padding-top:20px;">
-                                    <li>
-                                        <a href="#">
-                                            <svg style="width: 26.67px; height:20px;">
-                                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                    </svg>
-                                        <p className="uppercase">Audio</p>
-                  </a>
-                </li>
-                                <li>
-                                    <a href="#">
-                                        <svg style="width:20px;height:20px;">
-                                            <use xmls: xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                    </svg>
-                                    <p className="uppercase">Defile</p>
-                  </a>
-                </li>
-                            <li>
-                                <a href="#">
-                                    <svg style="width: 20px; height:20px;">
-                                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                    </svg>
-                                <p className="uppercase">Image</p>
-                  </a>
-                </li>
-              </ul>
-                    <a href="#">
-                        <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-                    </a>
-                </div>
-            </div>
-        </div >
-      </div >
-    </div >
-
-            // s4-background -->
-            <div className="background" style="background-image:url(assets/img/IMG0509.jpg); background-position: center left"></div>
-
-            // s4-navigation bottom -->
-            <nav className="panel bottom" style="z-index:1000;">
-                <div className="sections">
-                    <div className="left">
-                        <button className="button popupTrigger hideForDesktop" data-popup-id="p4" style="padding-left:25px !important;">
-                            <svg style="width: 40px; height:40px;">
-                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
-            </svg>
-          </button>
-                </div>
-                <div className="center downArrow">
-                    <a href="brand.html#4" className="button actionButton">
-                        <svg>
-                            <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-down"></use>
-            </svg>
-          </a>
-        </div>
-            <div className="right">
-                <span data-dropdown-id="s4" className="button actionButton dropdownTrigger" style="padding-top:10px !important; padding-right:50px !important;">
-                    <i className="material-icons">share</i>
-                </span>
-            </div>
-      </div >
-    </nav >
-
-  </section >
-
-
-            // Slide 4-pop up for mobile and tablet -->
-            <div className="popup white hideForDesktop" data-popup-id="p4">
-                <div className="content">
-                    <div className="container">
-                        <div className="wrap spaces">
-                            <div className="fix-11-12 left popupContent">
-                                <h1 className="uppercase">Franc' Pairon</h1>
-                                <h2>Interview 17/11/2017</h2>
-                                <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I
-              will give you a complete account of the system."</h4>
-                                <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind
-              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</h5>
-                                <ul className="museum" style="padding-top:5%;">
-                                    <li>
-                                        <a href="#">
-                                            <svg style="width: 26.67px; height:20px;">
-                                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                  </svg>
-                                        <p className="uppercase">Audio</p>
-                </a>
-              </li>
-                                <li>
-                                    <a href="#">
-                                        <svg style="width:20px;height:20px;">
-                                            <use xmls: xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                  </svg>
-                                    <p className="uppercase">Defile</p>
-                </a>
-              </li>
-                            <li>
-                                <a href="#">
-                                    <svg style="width: 20px; height:20px;">
-                                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                  </svg>
-                                <p className="uppercase">Image</p>
-                </a>
-              </li>
-            </ul>
-                    <a href="#">
-                        <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-                    </a>
-                </div>
-            </div>
-      </div >
-    </div >
-  </div >
-
-            // Slide 4-social media -->
-            <div className="dropdown bottom center share" data-dropdown-id="s4" data-text="#" data-url="#" data-pinterest-image="#">
-                <ul>
-                    <li className="twitter">
-                        <svg>
-                            <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
-        </svg>
-      </li>
-                <li className="instagram">
-                    <svg>
-                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
-        </svg>
-      </li>
-            <li className="facebook">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
-        </svg>
-      </li >
-            <li className="linkedin">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
-        </svg>
-      </li >
-            <li className="mail" data-subject="Subject" data-body="Body">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
-        </svg>
-      </li >
-    </ul >
-  </div >
-
-
-            // Slide 5 -->
-            <section className="slide whiteSlide fade kenBurns slideshow" data-name="5">
-
-                // s5-navigation top -->
-                <nav className="panel top">
-                    <div className="sections">
-                        <div className="center upArrow">
-                            <a href="universe.html#5" className="button actionButton">
-                                <svg>
-                                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-up"></use>
-            </svg>
-          </a>
-                    </div>
-      </div>
-    </nav>
-
-            // s5-information -->
-            <div className="content">
-                <div className="container">
-                    <div className="wrap bottom">
-                        <div className="fix-7-12 toLeft">
-                            <div className="whitepad shadow hideForTablet">
-                                <ul className="grid">
-                                    <li className="col-12-12 left cell-33">
-                                        <h1>PASSAGE N&deg;X</h1>
-                                        <h2>Survival of the Fittest (SS 2005)</h2>
-                                        <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
-                    and I will give you a complete account of the system."</h4>
-                                        <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                                          blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
-                                          ocean.
-                  </h5>
                                         <ul className="museum" style="padding-top:20px;">
                                             <li>
                                                 <a href="#">
                                                     <svg style="width: 26.67px; height:20px;">
-                                                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                        </svg>
+                                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#headphones"></use>
+                                                    </svg>
+                                                    <p className="uppercase">Audio</p>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <svg style="width:20px;height:20px;">
+                                                        <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile"></use>
+                                                    </svg>
+                                                    <p className="uppercase">Defile</p>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <svg style="width: 20px; height:20px;">
+                                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#identity"></use>
+                                                    </svg>
+                                                    <p className="uppercase">Image</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <a href="#">
+                                            <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div >
+                        </div >
+                    </div >
+
+                    // s4-background -->
+                    <div className="background" style="background-image:url(assets/img/IMG0509.jpg); background-position: center left"></div>
+
+                    // s4-navigation bottom -->
+                    <nav className="panel bottom" style="z-index:1000;">
+                        <div className="sections">
+                            <div className="left">
+                                <button className="button popupTrigger hideForDesktop" data-popup-id="p4" style="padding-left:25px !important;">
+                                    <svg style="width: 40px; height:40px;">
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#info"></use>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div className="center downArrow">
+                                <a href="brand.html#4" className="button actionButton">
+                                    <svg>
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#arrow-down"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div className="right">
+                                <span data-dropdown-id="s4" className="button actionButton dropdownTrigger" style="padding-top:10px !important; padding-right:50px !important;">
+                                    <i className="material-icons">share</i>
+                                </span>
+                            </div>
+                        </div >
+                    </nav >
+
+                </section >
+
+
+                // Slide 4-pop up for mobile and tablet -->
+                <div className="popup white hideForDesktop" data-popup-id="p4">
+                    <div className="content">
+                        <div className="container">
+                            <div className="wrap spaces">
+                                <div className="fix-11-12 left popupContent">
+                                    <h1 className="uppercase">Franc' Pairon</h1>
+                                    <h2>Interview 17/11/2017</h2>
+                                    <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I
+              will give you a complete account of the system."</h4>
+                                    <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind
+              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</h5>
+                                    <ul className="museum" style="padding-top:5%;">
+                                        <li>
+                                            <a href="#">
+                                                <svg style="width: 26.67px; height:20px;">
+                                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#headphones"></use>
+                                                </svg>
                                                 <p className="uppercase">Audio</p>
-                      </a>
-                    </li>
+                                            </a>
+                                        </li>
                                         <li>
                                             <a href="#">
                                                 <svg style="width:20px;height:20px;">
-                                                    <use xmls: xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                        </svg>
-                                            <p className="uppercase">Defile</p>
-                      </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <svg style="width: 20px; height:20px;">
-                                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                        </svg>
-                                        <p className="uppercase">Image</p>
-                      </a>
-                    </li>
-                  </ul>
-                            <a href="#">
-                                <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-                            </a>
-                </li>
-                        <li className="col-6-12 left ae-4 fromCenter">
-                        </li>
-              </ul>
-                </div>
-            </div>
-        </div >
-      </div >
-    </div >
-
-            // s5-navigation bottom -->
-            <nav className="panel bottom" style="z-index:1000;">
-                <div className="sections">
-                    <div className="left">
-                        <button className="button popupTrigger hideForDesktop" data-popup-id="p5" style="padding-left:25px !important;">
-                            <svg style="width: 40px; height:40px;">
-                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
-            </svg>
-          </button>
-                </div>
-                <div className="center downArrow">
-                    <a href="brand.html#5" className="button actionButton">
-                        <svg>
-                            <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-down"></use>
-            </svg>
-          </a>
-        </div>
-            <div className="right">
-                <span data-dropdown-id="s5" className="button actionButton dropdownTrigger" style="padding-top:10px !important; padding-right:50px !important;">
-                    <i className="material-icons">share</i>
-                </span>
-            </div>
-      </div >
-    </nav >
-
-            // s5-background -->
-            <div className="background shown" style="background-image:url(assets/img/IB9ArnaudLoubry.jpeg); background-position: top center"></div>
-            <div className="background" style="background-image:url(assets/img/expo2.jpeg); background-position: center right"></div>
-            <div className="background" style="background-image:url(assets/img/expo3.jpeg); background-position: center center"></div>
-            <div className="background" style="background-image:url(assets/img/expo4.jpeg); background-position: center center"></div>
-            <div className="background" style="background-image:url(assets/img/expo5.jpeg); background-position: center center"></div>
-            <div className="background" style="background-image:url(assets/img/expo6.jpeg); background-position: center right"></div>
-            <div className="background" style="background-image:url(assets/img/expo1.jpeg); background-position: center right"></div>
-
-  </section >
-
-
-            // Slide 5-pop up for mobile and tablet -->
-            <div className="popup white hideForDesktop" data-popup-id="p5">
-                <div className="content">
-                    <div className="container">
-                        <div className="wrap spaces">
-                            <div className="fix-11-12 left popupContent">
-                                <h1 className="uppercase">Franc' Pairon</h1>
-                                <h2>Interview 17/11/2017</h2>
-                                <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I
-              will give you a complete account of the system."</h4>
-                                <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind
-              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</h5>
-                                <ul className="museum" style="padding-top:5%;">
-                                    <li>
-                                        <a href="#">
-                                            <svg style="width: 26.67px; height:20px;">
-                                                <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                  </svg>
-                                        <p className="uppercase">Audio</p>
-                </a>
-              </li>
-                                <li>
+                                                    <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile"></use>
+                                                </svg>
+                                                <p className="uppercase">Defile</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg style="width: 20px; height:20px;">
+                                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#identity"></use>
+                                                </svg>
+                                                <p className="uppercase">Image</p>
+                                            </a>
+                                        </li>
+                                    </ul>
                                     <a href="#">
-                                        <svg style="width:20px;height:20px;">
-                                            <use xmls: xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                  </svg>
-                                    <p className="uppercase">Defile</p>
-                </a>
-              </li>
-                            <li>
-                                <a href="#">
-                                    <svg style="width: 20px; height:20px;">
-                                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                  </svg>
-                                <p className="uppercase">Image</p>
-                </a>
-              </li>
-            </ul>
-                    <a href="#">
-                        <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-                    </a>
+                                        <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div >
+                    </div >
+                </div >
+
+                // Slide 4-social media -->
+                <div className="dropdown bottom center share" data-dropdown-id="s4" data-text="#" data-url="#" data-pinterest-image="#">
+                    <ul>
+                        <li className="twitter">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#twitter"></use>
+                            </svg>
+                        </li>
+                        <li className="instagram">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#instagram"></use>
+                            </svg>
+                        </li>
+                        <li className="facebook">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#facebook"></use>
+                            </svg>
+                        </li >
+                        <li className="linkedin">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#linkedin"></use>
+                            </svg>
+                        </li >
+                        <li className="mail" data-subject="Subject" data-body="Body">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#mail"></use>
+                            </svg>
+                        </li >
+                    </ul >
+                </div >
+
+
+                // Slide 5 -->
+                <section className="slide whiteSlide fade kenBurns slideshow" data-name="5">
+
+                    // s5-navigation top -->
+                    <nav className="panel top">
+                        <div className="sections">
+                            <div className="center upArrow">
+                                <a href="universe.html#5" className="button actionButton">
+                                    <svg>
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#arrow-up"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+
+                    // s5-information -->
+                    <div className="content">
+                        <div className="container">
+                            <div className="wrap bottom">
+                                <div className="fix-7-12 toLeft">
+                                    <div className="whitepad shadow hideForTablet">
+                                        <ul className="grid">
+                                            <li className="col-12-12 left cell-33">
+                                                <h1>PASSAGE N&deg;X</h1>
+                                                <h2>Survival of the Fittest (SS 2005)</h2>
+                                                <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
+                    and I will give you a complete account of the system."</h4>
+                                                <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+                                                  blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
+                                                  ocean.
+                  </h5>
+                                                <ul className="museum" style="padding-top:20px;">
+                                                    <li>
+                                                        <a href="#">
+                                                            <svg style="width: 26.67px; height:20px;">
+                                                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#headphones"></use>
+                                                            </svg>
+                                                            <p className="uppercase">Audio</p>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <svg style="width:20px;height:20px;">
+                                                                <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile"></use>
+                                                            </svg>
+                                                            <p className="uppercase">Defile</p>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <svg style="width: 20px; height:20px;">
+                                                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#identity"></use>
+                                                            </svg>
+                                                            <p className="uppercase">Image</p>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <a href="#">
+                                                    <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                                                </a>
+                                            </li>
+                                            <li className="col-6-12 left ae-4 fromCenter">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div >
+                        </div >
+                    </div >
+
+                    // s5-navigation bottom -->
+                    <nav className="panel bottom" style="z-index:1000;">
+                        <div className="sections">
+                            <div className="left">
+                                <button className="button popupTrigger hideForDesktop" data-popup-id="p5" style="padding-left:25px !important;">
+                                    <svg style="width: 40px; height:40px;">
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#info"></use>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div className="center downArrow">
+                                <a href="brand.html#5" className="button actionButton">
+                                    <svg>
+                                        <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#arrow-down"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div className="right">
+                                <span data-dropdown-id="s5" className="button actionButton dropdownTrigger" style="padding-top:10px !important; padding-right:50px !important;">
+                                    <i className="material-icons">share</i>
+                                </span>
+                            </div>
+                        </div >
+                    </nav >
+
+                    // s5-background -->
+                    <div className="background shown" style="background-image:url(assets/img/IB9ArnaudLoubry.jpeg); background-position: top center"></div>
+                    <div className="background" style="background-image:url(assets/img/expo2.jpeg); background-position: center right"></div>
+                    <div className="background" style="background-image:url(assets/img/expo3.jpeg); background-position: center center"></div>
+                    <div className="background" style="background-image:url(assets/img/expo4.jpeg); background-position: center center"></div>
+                    <div className="background" style="background-image:url(assets/img/expo5.jpeg); background-position: center center"></div>
+                    <div className="background" style="background-image:url(assets/img/expo6.jpeg); background-position: center right"></div>
+                    <div className="background" style="background-image:url(assets/img/expo1.jpeg); background-position: center right"></div>
+
+                </section >
+
+
+                // Slide 5-pop up for mobile and tablet -->
+                <div className="popup white hideForDesktop" data-popup-id="p5">
+                    <div className="content">
+                        <div className="container">
+                            <div className="wrap spaces">
+                                <div className="fix-11-12 left popupContent">
+                                    <h1 className="uppercase">Franc' Pairon</h1>
+                                    <h2>Interview 17/11/2017</h2>
+                                    <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I
+              will give you a complete account of the system."</h4>
+                                    <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind
+              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</h5>
+                                    <ul className="museum" style="padding-top:5%;">
+                                        <li>
+                                            <a href="#">
+                                                <svg style="width: 26.67px; height:20px;">
+                                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#headphones"></use>
+                                                </svg>
+                                                <p className="uppercase">Audio</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg style="width:20px;height:20px;">
+                                                    <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile"></use>
+                                                </svg>
+                                                <p className="uppercase">Defile</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <svg style="width: 20px; height:20px;">
+                                                    <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#identity"></use>
+                                                </svg>
+                                                <p className="uppercase">Image</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <a href="#">
+                                        <p className="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div >
+                    </div >
+                </div >
+
+                // Slide 5-social media -->
+                <div className="dropdown bottom center share" data-dropdown-id="s5" data-text="#" data-url="#" data-pinterest-image="#">
+                    <ul>
+                        <li className="twitter">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#twitter"></use>
+                            </svg>
+                        </li>
+                        <li className="instagram">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#instagram"></use>
+                            </svg>
+                        </li>
+                        <li className="facebook">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#facebook"></use>
+                            </svg>
+                        </li >
+                        <li className="linkedin">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#linkedin"></use>
+                            </svg>
+                        </li >
+                        <li className="mail" data-subject="Subject" data-body="Body">
+                            <svg>
+                                <use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#mail"></use>
+                            </svg>
+                        </li >
+                    </ul >
+                </div >
+
+                {/* // Preloader --> */}
+                <div className="loadingIcon">
+                    <svg className="loading-icon" id="loading-circle" viewBox="0 0 18 18">
+                        <circle className="circle" opacity=".1" stroke="#fff" strokeWidth="2" strokeMiterlimit="10" cx="9" cy="9" r="8" fill="none"></circle>
+                        <circle className="dash" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" stroke-dasharray="1,100" cx="9" cy="9"
+                            r="8" fill="none"></circle>
+                    </svg>
                 </div>
-            </div>
-      </div >
-    </div >
-  </div >
-
-            // Slide 5-social media -->
-            <div className="dropdown bottom center share" data-dropdown-id="s5" data-text="#" data-url="#" data-pinterest-image="#">
-                <ul>
-                    <li className="twitter">
-                        <svg>
-                            <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
-        </svg>
-      </li>
-                <li className="instagram">
-                    <svg>
-                        <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
-        </svg>
-      </li>
-            <li className="facebook">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
-        </svg>
-      </li >
-            <li className="linkedin">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
-        </svg>
-      </li >
-            <li className="mail" data-subject="Subject" data-body="Body">
-                <svg>
-                    <use xmlns: xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
-        </svg>
-      </li >
-    </ul >
-  </div >
-
-            // Preloader -->
-            <div className="loadingIcon">
-                <svg className="loading-icon" id="loading-circle" viewBox="0 0 18 18">
-                    <circle className="circle" opacity=".1" stroke="#fff" stroke-width="2" stroke-miterlimit="10" cx="9" cy="9" r="8" fill="none"></circle>
-                    <circle className="dash" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1,100" cx="9" cy="9"
-                        r="8" fill="none"></circle>
-                </svg>
-            </div>
-
+            </body>
         )
     }
 }
