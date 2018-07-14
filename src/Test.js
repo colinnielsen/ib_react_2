@@ -3,22 +3,32 @@ import $ from 'jquery'
 
 class Test extends React.Component {
 
+    // componentWillMount() {
+    //     const script = document.createElement("script");
+
+    //     const scriptText = document.createTextNode("complex script with functions i.e. everything that would go inside the script tags");
+
+    //     script.appendChild(scriptText);
+    //     document.head.appendChild(script);
+    // }
+
     componentDidMount() {
         // ~~~~~~~~~~~~~~~~~~~ tag creators 
-        const script0 = document.createElement("script")
+        const script0 = document.createElement("script");
         const script1 = document.createElement("script");
         const script2 = document.createElement("script");
-        const script3 = document.createElement("script")
-        const script4 = document.createElement("script")
-        const script5 = document.createElement("script")
-        const script6 = document.createElement("script")
-        const script7 = document.createElement("script")
-        const script8 = document.createElement("script")
-        const style1 = document.createElement("style")
-        const style2 = document.createElement("style")
+        const script3 = document.createElement("script");
+        const script4 = document.createElement("script");
+        const script5 = document.createElement("script");
+        const script6 = document.createElement("script");
+        const script7 = document.createElement("script");
+        const script8 = document.createElement("script");
+        const owlScript = document.createElement("script")
+        const style1 = document.createElement("style");
+        const style2 = document.createElement("style");
 
         //~~~~~~~~~~~~~~~~~~~~ content setters
-        script3.innerHTML =
+        const script3Text = document.createTextNode(
             `
                 function shareVK() {
                     var yourUrl = $('.share[data-dropdown-id="more"]').data('url'),
@@ -38,7 +48,9 @@ class Test extends React.Component {
                 }
             `
 
-        script4.innerHTML =
+        )
+
+        const script4Text = document.createTextNode(
             `
                 (function (d) {
                     var config = {
@@ -49,8 +61,9 @@ class Test extends React.Component {
                     h = d.documentElement, t = setTimeout(function () { h.classNameName = h.classNameName.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.classNameName += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
                         })(document);
             `
+        )
 
-        script5.innerHTML =
+        const script5Text = document.createTextNode(
             `
                     $(function () {
                     setInterval(function () {
@@ -60,8 +73,9 @@ class Test extends React.Component {
                     }, 4000); // <-- set your interval here
                     });
                 `
+        )
 
-        script6.innerHTML =
+        const script6Text = document.createTextNode(
             `
                 $(window).on('slideChange', function (event, number, element) {
                     var $audio = $('audio');                
@@ -70,8 +84,9 @@ class Test extends React.Component {
                             });
                         });
             `
+        )
 
-        script7.innerHTML =
+        const script7Text = document.createTextNode(
             `
                 $(function () {
                             $('[data-on-click]').on('click', function () {
@@ -81,7 +96,9 @@ class Test extends React.Component {
                         });
             `
 
-        script8.innerHTML =
+        )
+
+        const script8Text = document.createTextNode(
             `
                 $(document).ready(function () {
                     $('.owl-carousel').owlCarousel({
@@ -122,6 +139,7 @@ class Test extends React.Component {
                     })
                 })
             `
+        )
 
         style1.innerHTML =
             `
@@ -158,14 +176,18 @@ class Test extends React.Component {
                     visibility: visible;
                 }
             `
-
+        // < script src = "https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/owl.carousel.min.js" ></script >
+        //     <link href="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+        //         <link href="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/assets/owl.theme.default.min.css" rel="stylesheet"
+        //             type="text/css">
         //~~~~~~~~~~~~~~~~~~~ source setters
         script0.src = "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js";
         script1.src = "./js/plugins.js";
         script2.src = "./js/slides.js";
+        owlScript.src = "https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/owl.carousel.min.js";
 
         //~~~~~~~~~~~~~~~~~~~~~ async waiters
-        // script0.async = true;
+        script0.async = true;
         script1.async = true;
         script2.async = true;
         script3.async = true;
@@ -174,24 +196,33 @@ class Test extends React.Component {
         script6.async = true;
         script7.async = true;
         script8.async = true;
+        owlScript.async = true;
 
         //~~~~~~~~~~~~~~~~~~~ appenders
-        document.head.appendChild(script0);
+        script3.appendChild(script3Text);
+        // script4.appendChild(script4Text);
+        script5.appendChild(script5Text);
+        script6.appendChild(script6Text);
+        script7.appendChild(script7Text);
+        script8.appendChild(script8Text);
+
+        document.head.appendChild(script0); //should this be appended on the body at the end or the head? -head?
         document.head.appendChild(script1);
         document.head.appendChild(script2);
         document.head.appendChild(script3);
-        document.body.appendChild(script4);
-        // document.body.appendChild(script5);
-        // document.head.appendChild(script6);
+        // document.body.appendChild(script4);
+        document.body.appendChild(script5);
+        document.body.appendChild(script6);
         document.querySelector('#asdfgthesidebar').appendChild(style1);
         document.body.appendChild(style2);
-        $(script7).insertAfter('#asdfgthesidebar')
-        document.querySelector('#contentScript').appendChild(script8)
+        $(script7).insertAfter('#asdfgthesidebar');
+        document.querySelector('#contentScript').appendChild(script8);
+        document.body.appendChild(owlScript);
     }
 
     render() {
         return (
-            <body className="slides zen horizontal">
+            <React.Fragment>
 
                 {/* // SVG Library --&gt; */}
                 <svg xmlns="//www.w3.org/2000/svg" style={{ display: 'none' }}>
@@ -282,7 +313,7 @@ class Test extends React.Component {
                     <symbol id="sound-off" viewBox="0 0 22 22">
                         <path d="M10.434 2.098c-.347-.165-.758-.119-1.058.121l-4.726 3.781h-2.154c-1.376 0-2.496 1.12-2.496 2.496v5.009c0 1.376 1.12 2.495 2.496 2.495h2.153l4.726 3.781c.181.145.402.219.625.219.147 0 .295-.032.433-.099.347-.167.567-.516.567-.901v-16c0-.384-.22-.735-.566-.902zm-1.434 14.821l-3.375-2.7c-.178-.142-.398-.219-.625-.219h-2.504c-.274 0-.496-.222-.496-.495v-5.009c0-.274.222-.496.496-.496h2.504c.227 0 .447-.077.625-.219l3.375-2.7v11.838zM19.414 11l2.293-2.293c.391-.391.391-1.023 0-1.414s-1.023-.391-1.414 0l-2.293 2.293-2.293-2.293c-.391-.391-1.023-.391-1.414 0s-.391 1.023 0 1.414l2.293 2.293-2.293 2.293c-.391.391-.391 1.023 0 1.414.195.195.451.293.707.293s.512-.098.707-.293l2.293-2.293 2.293 2.293c.195.195.451.293.707.293s.512-.098.707-.293c.391-.391.391-1.023 0-1.414l-2.293-2.293z" />
                     </symbol>
-                    // social --&gt;
+                    {/* // social  */}
                     <symbol id="facebook" viewBox="0 0 24 24">
                         <path d="M24 1.3v21.3c0 .7-.6 1.3-1.3 1.3h-6.1v-9.3h3.1l.5-3.6h-3.6v-2.2c0-1.1.3-1.8 1.8-1.8h1.9v-3.2c-.3 0-1.5-.1-2.8-.1-2.8 0-4.7 1.7-4.7 4.8v2.7h-3.1v3.6h3.1v9.2h-11.5c-.7 0-1.3-.6-1.3-1.3v-21.4c0-.7.6-1.3 1.3-1.3h21.3c.8 0 1.4.6 1.4 1.3z" />
                     </symbol>
@@ -354,7 +385,7 @@ class Test extends React.Component {
                         <path d="M5.92 2.52h4.45v24.99h-4.45zM19.64 2.51h4.45v24.99h-4.45z" />
                     </symbol>
                 </svg>
-                // Navigation Arrows --&gt;
+                {/* // Navigation Arrows --&gt; */}
                 <nav className="side left">
                     <div className="navigation">
                         <div className="cell">
@@ -377,7 +408,7 @@ class Test extends React.Component {
                         </div>
                     </div>
                 </nav>
-                // Panel Top #06 --&gt;
+                {/* // Panel Top #06 --&gt; */}
                 <nav className="panel top">
                     <div className="sections">
                         <div className="left">
@@ -396,13 +427,11 @@ class Test extends React.Component {
                         </div>
                     </div>
                 </nav>
-                // Sidebar --&gt;
+                {/* // Sidebar --&gt; */}
                 <nav className="sidebar bottom yellow" data-sidebar-id={9} id="asdfgthesidebar">
                     <div id="contentScript" className="content">
-                        <link href="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/assets/owl.carousel.min.css" rel="stylesheet" type="text/css" />
-                        <link href="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/assets/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
                         <div className="fix-12-12">
-                            // your carousel --&gt;
+                            {/* // your carousel --&gt; */}
                             <div className="owl-carousel owl-theme ae-3" style={{ display: 'block', height: 150 }}>
                                 <div className="item">
                                     <a href="#1">
@@ -448,12 +477,9 @@ class Test extends React.Component {
                         </div>
                     </div>
                 </nav>
-                {'{'}/* -- &gt; */{'}'}
-                // for mobile swipe
-                {'{'}/* --&gt; */{'}'}
-                {'{'}/* // Slide 1 --&gt; */{'}'}
+                {/* Slide 1  */}
                 <section className="slide fade kenBurns" data-name={1}>
-                    // s1-navigation top --&gt;
+                    {/* // s1-navigation top --&gt; */}
                     <nav className="panel top">
                         <div className="sections">
                             <div className="center upArrow">
@@ -465,14 +491,14 @@ class Test extends React.Component {
                             </div>
                         </div>
                     </nav>
-                    // s1-information --&gt;
+                    {/* // s1-information  */}
                     <div className="content" style={{ WebkitOverflowScrolling: 'touch', overflowY: 'scroll' }}>
                         <iframe src="archive/edit/francpairon.html" style={{ width: '100%', height: '100%' }} scrolling="auto" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation" />
                     </div>
-                    // s1-background 
-                    <div className="background hideForDesktop" style={{ backgroundImage: 'url(assets/img/IMG1179.jpeg)', backgroundPosition: 'bottom left' }} />--&gt;
-                    // s1-navigation bottom --&gt;
-          <nav className="panel bottom" style={{ zIndex: 1000 }}>
+                    {/* // s1-background  */}
+                    <div className="background hideForDesktop" style={{ backgroundImage: 'url(assets/img/IMG1179.jpeg)', backgroundPosition: 'bottom left' }} />
+                    {/* // s1-navigation bottom  */}
+                    <nav className="panel bottom" style={{ zIndex: 1000 }}>
                         <div className="sections">
                             <div className="left">
                                 <button className="button hideForDesktop" data-on-click="http://isabelleballu.com/test/archive/edit/francpairon.html" style={{ paddingLeft: '25px !important' }}>
@@ -496,7 +522,7 @@ class Test extends React.Component {
                         </div>
                     </nav>
                 </section>
-                // Slide 1-social media --&gt;
+                {/* // Slide 1-social media  */}
                 <div className="dropdown bottom center share" data-dropdown-id="s1" data-text="#" data-url="#" data-pinterest-image="#">
                     <ul>
                         <li className="twitter">
@@ -526,9 +552,9 @@ class Test extends React.Component {
                         </li>
                     </ul>
                 </div>
-                // Slide 2 --&gt;
+                Slide 2 --&gt;
                 <section className="slide fade kenBurns" data-name={2}>
-                    // s2-navigation top --&gt;
+                    {/* // s2-navigation top --&gt; */}
                     <nav className="panel top">
                         <div className="sections">
                             <div className="center upArrow">
@@ -540,7 +566,7 @@ class Test extends React.Component {
                             </div>
                         </div>
                     </nav>
-                    // s2-information --&gt;
+                    {/* // s2-information --&gt; */}
                     <div className="content">
                         <div className="container">
                             <div className="wrap bottom">
@@ -568,7 +594,7 @@ class Test extends React.Component {
                                                     <li>
                                                         <a href="#">
                                                             <svg style={{ width: 20, height: 20 }}>
-                                                                <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
+                                                                <use xmlsxlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
                                                             </svg>
                                                             <p className="uppercase">Defile</p>
                                                         </a>
@@ -594,9 +620,9 @@ class Test extends React.Component {
                             </div>
                         </div>
                     </div>
-                    // s2-background --&gt;
+                    {/* // s2-background --&gt; */}
                     <div className="background" style={{ backgroundImage: 'url(assets/img/lpzip.jpg)' }} />
-                    // s2-navigation bottom --&gt;
+                    {/* // s2-navigation bottom --&gt; */}
                     <nav className="panel bottom" style={{ zIndex: 1000 }}>
                         <div className="sections">
                             <div className="left">
@@ -621,7 +647,7 @@ class Test extends React.Component {
                         </div>
                     </nav>
                 </section>
-                // Slide 2-pop up for mobile and tablet --&gt;
+                Slide 2-pop up for mobile and tablet --&gt;
                 <div className="popup hideForDesktop" data-popup-id="p2">
                     <div className="content">
                         <div className="container">
@@ -645,7 +671,7 @@ class Test extends React.Component {
                                         <li>
                                             <a href="#">
                                                 <svg style={{ width: 20, height: 20 }}>
-                                                    <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
+                                                    <use xmlsxlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
                                                 </svg>
                                                 <p className="uppercase">Defile</p>
                                             </a>
@@ -667,7 +693,7 @@ class Test extends React.Component {
                         </div>
                     </div>
                 </div>
-                // Slide 2-social media --&gt;
+                Slide 2-social media --&gt;
                 <div className="dropdown bottom center share" data-dropdown-id="s2" data-text="#" data-url="#" data-pinterest-image="#">
                     <ul>
                         <li className="twitter">
@@ -697,9 +723,9 @@ class Test extends React.Component {
                         </li>
                     </ul>
                 </div>
-                // Slide 3 --&gt;
+                Slide 3 --&gt;
                 <section className="slide fade kenBurns" data-name={3}>
-                    // s3-navigation top --&gt;
+                    {/* // s3-navigation top --&gt; */}
                     <nav className="panel top">
                         <div className="sections">
                             <div className="center upArrow">
@@ -711,7 +737,7 @@ class Test extends React.Component {
                             </div>
                         </div>
                     </nav>
-                    // s3-information --&gt;
+                    {/* // s3-information --&gt; */}
                     <div className="content">
                         <div className="container">
                             <div className="wrap bottom">
@@ -739,7 +765,7 @@ class Test extends React.Component {
                                                     <li>
                                                         <a href="#">
                                                             <svg style={{ width: 20, height: 20 }}>
-                                                                <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
+                                                                <use xmlsxlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
                                                             </svg>
                                                             <p className="uppercase">Defile</p>
                                                         </a>
@@ -765,9 +791,9 @@ class Test extends React.Component {
                             </div>
                         </div>
                     </div>
-                    // s3-background --&gt;
+                    {/* // s3-background --&gt; */}
                     <div className="background" style={{ backgroundImage: 'url(assets/img/LG026.jpeg)', backgroundPosition: 'bottom right' }} />
-                    // s3-navigation bottom --&gt;
+                    {/* // s3-navigation bottom --&gt; */}
                     <nav className="panel bottom" style={{ zIndex: 1000 }}>
                         <div className="sections">
                             <div className="left">
@@ -792,7 +818,7 @@ class Test extends React.Component {
                         </div>
                     </nav>
                 </section>
-                // Slide 3-pop up for mobile and tablet --&gt;
+                Slide 3-pop up for mobile and tablet --&gt;
                 <div className="popup hideForDesktop" data-popup-id="p3">
                     <div className="content">
                         <div className="container">
@@ -838,7 +864,7 @@ class Test extends React.Component {
                         </div>
                     </div>
                 </div>
-                // Slide 3-social media --&gt;
+                Slide 3-social media --&gt;
                 <div className="dropdown bottom center share" data-dropdown-id="s3" data-text="#" data-url="#" data-pinterest-image="#">
                     <ul>
                         <li className="twitter">
@@ -868,9 +894,9 @@ class Test extends React.Component {
                         </li>
                     </ul>
                 </div>
-                // Slide 4 --&gt;
+                Slide 4 --&gt;
                 <section className="slide whiteSlide fade kenBurns" data-name={4}>
-                    // s4-navigation top --&gt;
+                    {/* // s4-navigation top --&gt; */}
                     <nav className="panel top">
                         <div className="sections">
                             <div className="center upArrow">
@@ -882,7 +908,7 @@ class Test extends React.Component {
                             </div>
                         </div>
                     </nav>
-                    // s4-information --&gt;
+                    {/* // s4-information --&gt; */}
                     <div className="content">
                         <div className="container">
                             <div className="wrap bottom">
@@ -906,7 +932,7 @@ class Test extends React.Component {
                                             <li>
                                                 <a href="#">
                                                     <svg style={{ width: 20, height: 20 }}>
-                                                        <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
+                                                        <use xmlsxlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
                                                     </svg>
                                                     <p className="uppercase">Defile</p>
                                                 </a>
@@ -928,9 +954,9 @@ class Test extends React.Component {
                             </div>
                         </div>
                     </div>
-                    // s4-background --&gt;
+                    {/* // s4-background --&gt; */}
                     <div className="background" style={{ backgroundImage: 'url(assets/img/IMG0509.jpg)', backgroundPosition: 'center left' }} />
-                    // s4-navigation bottom --&gt;
+                    {/* // s4-navigation bottom --&gt; */}
                     <nav className="panel bottom" style={{ zIndex: 1000 }}>
                         <div className="sections">
                             <div className="left">
@@ -955,7 +981,7 @@ class Test extends React.Component {
                         </div>
                     </nav>
                 </section>
-                // Slide 4-pop up for mobile and tablet --&gt;
+                Slide 4-pop up for mobile and tablet --&gt;
                 <div className="popup white hideForDesktop" data-popup-id="p4">
                     <div className="content">
                         <div className="container">
@@ -979,7 +1005,7 @@ class Test extends React.Component {
                                         <li>
                                             <a href="#">
                                                 <svg style={{ width: 20, height: 20 }}>
-                                                    <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
+                                                    <use xmlsxlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
                                                 </svg>
                                                 <p className="uppercase">Defile</p>
                                             </a>
@@ -1001,7 +1027,7 @@ class Test extends React.Component {
                         </div>
                     </div>
                 </div>
-                // Slide 4-social media --&gt;
+                Slide 4-social media --&gt;
                 <div className="dropdown bottom center share" data-dropdown-id="s4" data-text="#" data-url="#" data-pinterest-image="#">
                     <ul>
                         <li className="twitter">
@@ -1031,9 +1057,9 @@ class Test extends React.Component {
                         </li>
                     </ul>
                 </div>
-                // Slide 5 --&gt;
+                Slide 5 --&gt;
                 <section className="slide whiteSlide fade kenBurns slideshow" data-name={5}>
-                    // s5-navigation top --&gt;
+                    {/* // s5-navigation top --&gt; */}
                     <nav className="panel top">
                         <div className="sections">
                             <div className="center upArrow">
@@ -1045,7 +1071,7 @@ class Test extends React.Component {
                             </div>
                         </div>
                     </nav>
-                    // s5-information --&gt;
+                    {/* // s5-information --&gt; */}
                     <div className="content">
                         <div className="container">
                             <div className="wrap bottom">
@@ -1055,12 +1081,8 @@ class Test extends React.Component {
                                             <li className="col-12-12 left cell-33">
                                                 <h1>PASSAGE N°X</h1>
                                                 <h2>Survival of the Fittest (SS 2005)</h2>
-                                                <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
-                          and I will give you a complete account of the system."</h4>
-                                                <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                                                  blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
-                                                  ocean.
-                        </h5>
+                                                <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system."</h4>
+                                                <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</h5>
                                                 <ul className="museum" style={{ paddingTop: 20 }}>
                                                     <li>
                                                         <a href="#">
@@ -1073,7 +1095,7 @@ class Test extends React.Component {
                                                     <li>
                                                         <a href="#">
                                                             <svg style={{ width: 20, height: 20 }}>
-                                                                <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
+                                                                <use xmlsxlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
                                                             </svg>
                                                             <p className="uppercase">Defile</p>
                                                         </a>
@@ -1099,7 +1121,7 @@ class Test extends React.Component {
                             </div>
                         </div>
                     </div>
-                    // s5-navigation bottom --&gt;
+                    {/* // s5-navigation bottom --&gt; */}
                     <nav className="panel bottom" style={{ zIndex: 1000 }}>
                         <div className="sections">
                             <div className="left">
@@ -1123,7 +1145,7 @@ class Test extends React.Component {
                             </div>
                         </div>
                     </nav>
-                    // s5-background --&gt;
+                    {/* // s5-background --&gt; */}
                     <div className="background shown" style={{ backgroundImage: 'url(assets/img/IB9ArnaudLoubry.jpeg)', backgroundPosition: 'top center' }} />
                     <div className="background" style={{ backgroundImage: 'url(assets/img/expo2.jpeg)', backgroundPosition: 'center right' }} />
                     <div className="background" style={{ backgroundImage: 'url(assets/img/expo3.jpeg)', backgroundPosition: 'center center' }} />
@@ -1132,7 +1154,7 @@ class Test extends React.Component {
                     <div className="background" style={{ backgroundImage: 'url(assets/img/expo6.jpeg)', backgroundPosition: 'center right' }} />
                     <div className="background" style={{ backgroundImage: 'url(assets/img/expo1.jpeg)', backgroundPosition: 'center right' }} />
                 </section>
-                // Slide 5-pop up for mobile and tablet --&gt;
+                Slide 5-pop up for mobile and tablet --&gt;
                 <div className="popup white hideForDesktop" data-popup-id="p5">
                     <div className="content">
                         <div className="container">
@@ -1156,7 +1178,7 @@ class Test extends React.Component {
                                         <li>
                                             <a href="#">
                                                 <svg style={{ width: 20, height: 20 }}>
-                                                    <use xmlsXlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
+                                                    <use xmlsxlink="http://www.w3.org/1999/xlink" xlinkHref="#defile" />
                                                 </svg>
                                                 <p className="uppercase">Defile</p>
                                             </a>
@@ -1178,7 +1200,7 @@ class Test extends React.Component {
                         </div>
                     </div>
                 </div>
-                // Slide 5-social media --&gt;
+                Slide 5-social media --&gt;
                 <div className="dropdown bottom center share" data-dropdown-id="s5" data-text="#" data-url="#" data-pinterest-image="#">
                     <ul>
                         <li className="twitter">
@@ -1208,14 +1230,14 @@ class Test extends React.Component {
                         </li>
                     </ul>
                 </div>
-                {'{'}/* // Preloader --&gt; */{'}'}
-                <div className="loadingIcon">
+                {/* Preloader  */}
+                < div className="loadingIcon">
                     <svg className="loading-icon" id="loading-circle" viewBox="0 0 18 18">
-                        <circle className="circle" opacity=".1" stroke="#fff" strokeWidth={2} mstrokeMiterlimit={10} cx={9} cy={9} r={8} fill="none" />
-                        <circle className="dash" strokeWidth={2} strokeLinecap="round" mstrokeMiterlimit={10} strokeDasharray="1,100" cx={9} cy={9} r={8} fill="none" />
+                        <circle className="circle" opacity=".1" stroke="#fff" strokeWidth={2} mstrokemiterlimit={10} cx={9} cy={9} r={8} fill="none" />
+                        <circle className="dash" strokeWidth={2} strokeLinecap="round" mstrokemiterlimit={10} strokeDasharray="1,100" cx={9} cy={9} r={8} fill="none" />
                     </svg>
                 </div>
-            </body>
+            </React.Fragment >
         )
     }
 }

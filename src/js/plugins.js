@@ -6,7 +6,7 @@
 //   |_|    |_|\__,_|\__, |_|_| |_|___/
 //                    __/ |            
 //                   |___/             
-//
+
 //   Required plugins for Slides JS
 //   https://designmodo.com/slides/
 

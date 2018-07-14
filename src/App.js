@@ -5,9 +5,9 @@ import Test from './Test.js'
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <body className="zen slides horizontal">
         <Test />
-      </div>
+      </body>
     );
   }
 }
