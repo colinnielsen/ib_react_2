@@ -1,4 +1,7 @@
+<html class="">
+
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -8,7 +11,6 @@
 
   <!-- Fonts -->
   <link rel="stylesheet" href="https://use.typekit.net/okm1bwz.css">
-
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700|Material+Icons" rel="stylesheet"
     type="text/css" />
@@ -128,7 +130,7 @@
 
 </head>
 
-<body class="slides zen horizontal">
+<body class="slides zen horizontal animated fadeInUpBig">
 
 
   <!-- SVG Library -->
@@ -578,6 +580,11 @@
       });
 
     });
+
+    $('uparrowbutton').click(function (event) {
+      event.preventDefault()
+      console.log("hello")
+    })
   </script>
 
   <!-- 1) new tab scripts -->
@@ -599,7 +606,7 @@
     <nav class="panel top">
       <div class="sections">
         <div class="center upArrow">
-          <a href="universe.html#1" class="button actionButton">
+          <a href="universe.html#1" class="button actionButton upArrowButton">
             <svg>
               <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-up"></use>
             </svg>
@@ -1417,3 +1424,5 @@
   </div>
 
 </body>
+
+</html>

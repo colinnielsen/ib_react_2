@@ -17,129 +17,128 @@ class Test extends React.Component {
         const script0 = document.createElement("script");
         const script1 = document.createElement("script");
         const script2 = document.createElement("script");
-        const script3 = document.createElement("script");
-        const script4 = document.createElement("script");
-        const script5 = document.createElement("script");
-        const script6 = document.createElement("script");
-        const script7 = document.createElement("script");
-        const script8 = document.createElement("script");
-        const owlScript = document.createElement("script")
+        // const script3 = document.createElement("script");
+        // const script4 = document.createElement("script");
+        // const script5 = document.createElement("script");
+        // const script6 = document.createElement("script");
+        // const script7 = document.createElement("script");
+        // const script8 = document.createElement("script");
+        // const owlScript = document.createElement("script")
         const style1 = document.createElement("style");
         const style2 = document.createElement("style");
 
-        //~~~~~~~~~~~~~~~~~~~~ content setters
-        const script3Text = document.createTextNode(
-            `
-                function shareVK() {
-                    var yourUrl = $('.share[data-dropdown-id="more"]').data('url'),
-                        title = $('.share[data-dropdown-id="more"]').data('text'),
-                        description = "Your Description",
-                        url = 'https://vkontakte.ru/share.php?url=' + yourUrl + '&title=' + title + '&description=' + description + '&noparse=true';
-                    window.open(url, '', 'toolbar=0,status=0,width=626,height=436');
-                }
-                function shareWeibo() {
-                    var yourUrl = $('.share[data-dropdown-id="more"]').data('url'),
-                        title = $('.share[data-dropdown-id="more"]').data('text'),
-                        url = 'http://service.weibo.com/share/share.php?url=' + yourUrl + '&appkey=&title=' + title + '&pic=&ralateUid=&language=zh_cn';
-                    window.open(url, '', 'toolbar=0,status=0,width=626,height=436');
-                }
-                function externalLink(url) {
-                    window.location = url;
-                }
-            `
+        // //~~~~~~~~~~~~~~~~~~~~ content setters
+        // const script3Text = document.createTextNode(
+        //     `
+        function shareVK() {
+            var yourUrl = $('.share[data-dropdown-id="more"]').data('url'),
+                title = $('.share[data-dropdown-id="more"]').data('text'),
+                description = "Your Description",
+                url = 'https://vkontakte.ru/share.php?url=' + yourUrl + '&title=' + title + '&description=' + description + '&noparse=true';
+            window.open(url, '', 'toolbar=0,status=0,width=626,height=436');
+        }
+        function shareWeibo() {
+            var yourUrl = $('.share[data-dropdown-id="more"]').data('url'),
+                title = $('.share[data-dropdown-id="more"]').data('text'),
+                url = 'http://service.weibo.com/share/share.php?url=' + yourUrl + '&appkey=&title=' + title + '&pic=&ralateUid=&language=zh_cn';
+            window.open(url, '', 'toolbar=0,status=0,width=626,height=436');
+        }
+        function externalLink(url) {
+            window.location = url;
+        }
+        // `
 
-        )
+        // )
 
-        const script4Text = document.createTextNode(
-            `
-                (function (d) {
-                    var config = {
-                    kitId: 'okm1bwz',
-                    scriptTimeout: 3000,
-                    async: true
+        // const script4Text = document.createTextNode(
+        //     `
+        // (function (d) {
+        //     var config = {
+        //         kitId: 'okm1bwz',
+        //         scriptTimeout: 3000,
+        //         async: true
+        //     },
+        //         h = d.documentElement, t = setTimeout(function () { h.classNameName = h.classNameName.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.classNameName += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+        // })(document);
+        //     `
+        // )
+
+        // const script5Text = document.createTextNode(
+        //     `
+
+        $(function () {
+            setInterval(function () {
+                if ($('.slideshow').hasclassName('selected')) {
+                    $('.slideshow.selected .background.shown').removeclassName('shown').nextOrFirst('.background').addclassName('shown');
+                }
+            }, 4000); // <-- set your interval here
+        });
+        //         `
+        // )
+
+        // const script6Text = document.createTextNode(
+        //     `
+        $(window).on('slideChange', function (event, number, element) {
+            var $audio = $('audio');
+            $audio.animate({ volume: 0 }, 500, function () {
+                $audio[0].pause();
+            });
+        });
+        //     `
+        // )
+
+        // const script7Text = document.createTextNode(
+        //     `
+        $(function () {
+            $('[data-on-click]').on('click', function () {
+                var link = $(this).data('on-click');
+                window.open(link, "newwindow");
+            });
+        });
+        //     `
+
+        // )
+
+        // const script8Text = document.createTextNode(
+        //     `
+        $('.owl-carousel').owlCarousel({
+            stagePadding: 10,
+            loop: true,
+            margin: 1,
+            responsiveclassName: true,
+            responsive: {
+                0: {
+                    items: 2,
+                    nav: false,
+                    margin: 10
                 },
-                    h = d.documentElement, t = setTimeout(function () { h.classNameName = h.classNameName.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.classNameName += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
-                        })(document);
-            `
-        )
-
-        const script5Text = document.createTextNode(
-            `
-                    $(function () {
-                    setInterval(function () {
-                        if ($('.slideshow').hasclassName('selected')) {
-                        $('.slideshow.selected .background.shown').removeclassName('shown').nextOrFirst('.background').addclassName('shown');
-                        }
-                    }, 4000); // <-- set your interval here
-                    });
-                `
-        )
-
-        const script6Text = document.createTextNode(
-            `
-                $(window).on('slideChange', function (event, number, element) {
-                    var $audio = $('audio');                
-                    $audio.animate({volume: 0 }, 500, function () {
-                                $audio[0].pause();
-                            });
-                        });
-            `
-        )
-
-        const script7Text = document.createTextNode(
-            `
-                $(function () {
-                            $('[data-on-click]').on('click', function () {
-                                var link = $(this).data('on-click');
-                                window.open(link, "newwindow");
-                            });
-                        });
-            `
-
-        )
-
-        const script8Text = document.createTextNode(
-            `
-                $(document).ready(function () {
-                    $('.owl-carousel').owlCarousel({
-                        stagePadding: 10,
-                        loop: true,
-                        margin: 1,
-                        responsiveclassName: true,
-                        responsive: {
-                            0: {
-                                items: 2,
-                                nav: false,
-                                margin: 10
-                            },
-                            600: {
-                                items: 4,
-                                nav: false,
-                                margin: 10
-                            },
-                            1000: {
-                                items: 6,
-                                nav: false,
-                                loop: false,
-                                margin: 10
-                            },
-                            1500: {
-                                items: 8,
-                                nav: false,
-                                loop: false,
-                                margin: 10
-                            },
-                            2000: {
-                                items: 10,
-                                nav: false,
-                                loop: false,
-                                margin: 10
-                            }
-                        }
-                    })
-                })
-            `
-        )
+                600: {
+                    items: 4,
+                    nav: false,
+                    margin: 10
+                },
+                1000: {
+                    items: 6,
+                    nav: false,
+                    loop: false,
+                    margin: 10
+                },
+                1500: {
+                    items: 8,
+                    nav: false,
+                    loop: false,
+                    margin: 10
+                },
+                2000: {
+                    items: 10,
+                    nav: false,
+                    loop: false,
+                    margin: 10
+                }
+            }
+        })
+        //     `
+        // )
 
         style1.innerHTML =
             `
@@ -181,43 +180,43 @@ class Test extends React.Component {
         //         <link href="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/assets/owl.theme.default.min.css" rel="stylesheet"
         //             type="text/css">
         //~~~~~~~~~~~~~~~~~~~ source setters
-        script0.src = "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js";
+        // script0.src = "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js";
         script1.src = "./js/plugins.js";
         script2.src = "./js/slides.js";
-        owlScript.src = "https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/owl.carousel.min.js";
+        // owlScript.src = "https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/owl.carousel.min.js";
 
         //~~~~~~~~~~~~~~~~~~~~~ async waiters
         script0.async = true;
         script1.async = true;
         script2.async = true;
-        script3.async = true;
-        script4.async = true;
-        script5.async = true;
-        script6.async = true;
-        script7.async = true;
-        script8.async = true;
-        owlScript.async = true;
+        // script3.async = true;
+        // script4.async = true;
+        // script5.async = true;
+        // script6.async = true;
+        // script7.async = true;
+        // script8.async = true;
+        // owlScript.async = true;
 
         //~~~~~~~~~~~~~~~~~~~ appenders
-        script3.appendChild(script3Text);
+        // script3.appendChild(script3Text);
         // script4.appendChild(script4Text);
-        script5.appendChild(script5Text);
-        script6.appendChild(script6Text);
-        script7.appendChild(script7Text);
-        script8.appendChild(script8Text);
+        // script5.appendChild(script5Text);
+        // script6.appendChild(script6Text);
+        // script7.appendChild(script7Text);
+        // script8.appendChild(script8Text);
 
-        document.head.appendChild(script0); //should this be appended on the body at the end or the head? -head?
+        // document.head.appendChild(script0); //should this be appended on the body at the end or the head? -head?
         document.head.appendChild(script1);
         document.head.appendChild(script2);
-        document.head.appendChild(script3);
+        // document.head.appendChild(script3);
         // document.body.appendChild(script4);
-        document.body.appendChild(script5);
-        document.body.appendChild(script6);
+        // document.body.appendChild(script5);
+        // document.body.appendChild(script6);
         document.querySelector('#asdfgthesidebar').appendChild(style1);
         document.body.appendChild(style2);
-        $(script7).insertAfter('#asdfgthesidebar');
-        document.querySelector('#contentScript').appendChild(script8);
-        document.body.appendChild(owlScript);
+        // $(script7).insertAfter('#asdfgthesidebar');
+        // document.querySelector('#contentScript').appendChild(script8);
+        // document.body.appendChild(owlScript);
     }
 
     render() {
